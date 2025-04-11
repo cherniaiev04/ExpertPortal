@@ -23,13 +23,13 @@ The project utilizes the following technologies:
 - **HTML/CSS/Bootstrap/Stimulus with Hotwire**
 - **SQLite**
 
-# App Hosting with Docker
+## App Hosting with Docker
 
 ### Prerequisites
 1. Docker Engine (Linux) or [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows/MacOS) installed and running.
 2. [Git](https://git-scm.com/downloads) installed and configured.
 
-## Cloning the Repository
+### Cloning the Repository
 1. Create a directory for ExpertGrid.
 2. Navigate to the directory using a shell of your choice.
 3. Clone the repository: `git clone <http clone url>`
