@@ -1,0 +1,43 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="card p-4" style="width: 100%; max-width: 400px;">
+
+    <% flash.each do |type, message| %>
+      <div class="alert <%= flash_class(type) %> alert-dismissable fade show" role="alert">
+        <%= message %>
+      </div>
+    <% end %>
+
+    <% if @user.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+        <ul class="mb-0">
+            <% @user.errors.each do |error| %>
+            <li><%= error.message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+
+    <h2 class="text-center mb-4"><%= t("users.register") %></h2>
+
+    <%= form_with model: @user, url: sign_up_with_token_path(@invitation.token), local: true do |form| %>
+      <div class="mb-3">
+        <%= form.label :email, class: "form-label" %>
+        <%= form.email_field :email, value: @user.email, readonly: true, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label I18n.t("users.password"), class: "form-label" %>
+        <%= form.password_field :password, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label I18n.t("users.password_confirm"), class: "form-label" %>
+        <%= form.password_field :password_confirmation, class: "form-control" %>
+      </div>
+
+      <div class="d-grid">
+        <%= form.submit t("general.save"), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

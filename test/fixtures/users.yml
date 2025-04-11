@@ -1,0 +1,24 @@
+# test/fixtures/users.yml
+
+user_bob:
+  email: "bob-bingo@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  role: "user"
+
+admin_janet:
+  email: "janet@fiti.de"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'adminpassword123') %>
+  role: "admin"
+
+expert_alice:
+  email: "alice_fischer@gmx.de"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'expertpassword123') %>
+  role: "expert"
+  expert_id: 1
+  initiated: true
+
+expert_eve:
+  email: "eve@gmx.de"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'expert123') %>
+  role: "expert"
+  initiated: false

@@ -1,0 +1,23 @@
+alice_expertgrid:
+  expert_id: 1
+  project_id: 1
+
+alice_experthub:
+  expert_id: 1
+  project_id: 2
+
+bob_expertgrid: 
+  expert_id: 2
+  project_id: 1
+
+bob_experthub:
+  expert_id: 2
+  project_id: 2
+
+evelina_expertgrid: 
+  expert_id: 3
+  project_id: 1
+
+evelina_experthub:
+  expert_id: 3
+  project_id: 2 

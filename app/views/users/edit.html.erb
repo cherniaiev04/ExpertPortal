@@ -1,0 +1,30 @@
+<div class="container mt-5">
+  <h2>Profil bearbeiten</h2>
+  <%= form_with(model: @user) do |form| %>
+    <% if @user.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= t("general.errors.something_wrong") %></h4>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= form.label :email, class: "control-label" %>
+      <%= form.text_field :email, class: 'form-control', autofocus: true %>
+    </div>
+    <!-- Role Field -->
+    <div class="form-group">
+      <%= form.label :role, "Role", class: 'control-label' %>
+      <%= form.select :role, options_for_select(@roles, @user.role), {}, class: 'form-control' %>
+    </div>
+    <!-- Submit Button -->
+    <div class="form-group">
+      <%= form.submit I18n.t("general.save"), class: 'btn btn-create' %>
+    </div>
+  <% end %>
+  <!-- Link to go back to the user's profile -->
+  <%= link_to I18n.t("general.cancel"), users_path, class: 'btn btn-back' %>
+</div>

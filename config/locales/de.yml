@@ -1,0 +1,284 @@
+de:
+  activerecord:
+    errors:
+      messages:
+        confirmation: Die eingegebenen Passwörter müssen gleich sein.
+  navbar:
+    admin_role: "Admin"
+    expert_role: "Experte*in"
+    user_role: "Nutzer*in"
+    projects_menu: "Projekte"
+    experts_menu: "Expert*innen"
+    profile_menu: "Profile"
+  general:
+    name: Name
+    cancel: Abbrechen
+    save: Speichern
+    delete: Löschen
+    change: Bearbeiten
+    archived: Archiviert
+    sign_out: Abmelden
+    sign_in: Anmelden
+    create: Erstellen
+    back: Zurück
+    select: Bitte wählen...
+    no_return: Diese Aktion kann nicht rückgängig gemacht werden.
+    remember_me: Angemeldet bleiben
+    filter:
+      filter1: Filter 1
+      filter2: Filter 2
+      action: Aktion
+      another_action: Eine andere Aktion
+      something_else: Etwas anderes
+    placeholder:
+      email: E-Mail
+      password: Passwort
+    errors:
+      invalid_mail: Ungültiges E-Mail Format.
+      something_wrong: Fehler sind aufgetreten
+  mailer:
+    subjects:
+      welcome: Herzlich Willkommen auf ExpertGrid
+      onetime_link: Registrierung FITI
+    views:
+      welcome: Vielen Dank für ihre Registrierung bei FITI
+      log_in_text: Falls Sie dies noch nicht getan haben, können Sie sich nun unter folgendem Link anmelden und ihr Experten-Profil bearbeiten oder gegebenenfalls erstellen.
+      log_in: Anmelden
+      invite: Herzlich Willkommen auf dem Experten-Portal von FITI!
+      register_text: Unter folgendem Einmal-Link können sie sich auf unserem Portal registrieren. Der Link ist an ihre E-Mail gebunden und nur für 2 Wochen gültig. Falls sie es in diesem Zeitraum nicht schaffen kontaktieren sie uns bitte noch einmal.
+      register: Registrieren
+  experts:
+    expert_upcase: EXPERT*IN
+    expert: Expert*in
+    experts: Expert*innen
+    new_expert: Neue/n Expert*in
+    edit_experts: Expert*in verändern
+    search: Suche nach Vor- und Nachnamen
+    confirm_delete: "Sind Sie sicher, dass Sie diesen Experten löschen möchten?"
+    cv_download: "Lebenslauf herunterladen"
+    cv_view: "Lebenslauf anzeigen"
+    cv_not_uploaded: "Sie haben noch keinen Lebenslauf hochgeladen."
+    cv_delete: "Lebenslauf löschen"
+    certificates_download: "Nachweise und Zertifikate herunterladen"
+    certificates_view: "Nachweise und Zertifikate anzeigen"
+    certificates_not_uploaded: "Sie haben noch keine Nachweise oder Zertifikate hochgeladen."
+    certificates_delete: "Nachweise und Zertifikate löschen"
+    institution_bool: "Ich bin Teil einer Institution"
+    salutations:
+      - "Herr"
+      - "Frau"
+      - "Divers"
+      - "Keine Angabe"
+    travel_willingnesses:
+      - "Online"
+      - "Deutschland"
+      - "China"
+    expert_languages:
+      - "Deutsch"
+      - "Englisch"
+      - "Chinesisch"
+    filters:
+      clear_all: "Alle löschen"
+      find: "Suchen"
+      travel_willingness: "Reisebereitschaft"
+      lesson_language: "Unterrichtssprache"
+      communication_language: "Kommunikations-sprache"
+    fields:
+      name: Name
+      firstname: "Vorname"
+      lastname: "Nachname"
+      title: "Titel"
+      salutation: "Anrede"
+      email: "E-Mail"
+      phone: "Telefonnummer"
+      institution: "Institution"
+      expertise: "Weitere Themen-/Fachgebiete"
+      additional_info: "Anmerkungen"
+      personal_info: "Persönliche Informationen"
+      expertise_expertise: "Expertise"
+      category: "Fachgebiet"
+      categories: Themen-/Fachgebiete
+      hourly_rate: "Stundensatz"
+      daily_rate: "Tagessatz"
+      nationality: "Staatsangehörigkeit"
+      exp_in_china: "Chinaerfahrung"
+      cv: "Lebenslauf"
+      cv_pdf: "Lebenslauf.pdf"
+      documents: "Dokumenten"
+      certificates: "Nachweise und Zertifikate"
+      travel_willingness: "Reisebereitschaft"
+      lesson_language: "Unterrichtssprache"
+      communication_language: "Kommunikations-sprache"
+      location: "Standort"
+      cooperation: Kooperationsmöglickeiten
+      travel_info: Anmerkungen zur Reisebereitschaft
+      short_term_availability: Wie kurzfristig dürfen wir sie für ein Projekt kontaktieren?
+    placeholder:
+      title: Prof. Dr.
+      institution: Universität Heidelberg
+      cooperation: Es ist eine Führung über das Gelände möglich.
+      short_term_availability: "Mindestens 2 Tage"
+    messages:
+      created: "Expert*in wurde erfolgreich erstellt."
+      updated: "Expert*in wurde erfolgreich aktualisiert."
+      destroyed: "Expert*in wurde erfolgreich gelöscht."
+      cv_deleted: "Lebenslauf wurde erfolgreich gelöscht."
+    errors:
+      no_category_assigned: "Kein Themen-/Fachgebiet zugewiesen."
+      salutation_missing: "Anrede ist erforderlich."
+      name_missing: "Name ist erforderlich."
+      firstname_missing: "Vorname ist erforderlich."
+      email_missing: "E-Mail ist erforderlich."
+      telephone_missing: "Telefonnummer ist erforderlich."
+      category_missing: "Es muss mindestens ein Themen-/Fachgebiet vorhanden sein."
+      not_found: "Der/Die Expert*in konnte nicht gefunden werden."
+      institution_missing: "Bitte geben sie den Namen ihrer Institution an."
+      institution_bool_missing: "Sie müssen angeben ob sie in einer Institution sind."
+  projects:
+    project: "Projekt"
+    projects: "Projekte"
+    new_project: "Neues Projekt"
+    create_project: "Projekt erstellen"
+    edit_project: "Projekt bearbeiten"
+    edit_projects: "Projekte bearbeiten"
+    refresh_project: "Projekt aktualisieren"
+    show_project: "Projekt anzeigen"
+    back_to_projects: "Zurück zu den Projekten"
+    delete_project: "Projekt löschen"
+    search: "Suche nach Namen"
+    details: "Projekt Details"
+    filters:
+      clear_all: "Alle löschen"
+      find: "Suchen"
+      select_options: "Optionen auswählen"
+      select_all: "Alle auswählen"
+      select_expertise: "Fachgebiete auswählen"
+      select_topics: "Schwerpunktthemen auswählen"
+      select_location: "Ort auswählen"
+      expertise: "Fachgebiete"
+      key_topics: "Schwerpunktthemen"
+      location: "Ort"
+    fields:
+      name: "Name"
+      schedule: "Zeitplan"
+      description: "Beschreibung"
+      categories: "Themen-/Fachgebiete"
+      start_date: "Startdatum"
+      end_date: "Enddatum"
+      updated_at: "Bearbeitet"
+      participants: "Teilnehmer*innen"
+      location: "Ort"
+      clients: "Kunden"
+      expertise: "Fachgebiete"
+      project_type: "Projekttyp"
+      key_topics: "Schwerpunktthemen"
+      expert: "Expert*innen"
+      details: "Details"
+      topic_project_plan: "Projektablaufplan"
+      dates: "Termine"
+      project_shedule: "Ablaufplan Projekt"
+      budget_plan: "Budgetplan Projekt"
+      flight_date: "Flugdaten"
+      accompanying_person: "Begleitperson"
+      expert_presentation: "Präsentation des Experten"
+      topic_cordination: "Abstimmung mit Kooperationspartnern"
+      event_location: "Veranstaltungsort"
+      adress_of_event: "Adresse des Veranstaltungsortes"
+      contacts_details_of_event: "Kontaktdaten des Veranstaltungsortes"
+      offer: "Angebot"
+      invoice: "Rechnung"
+      remarks: "Anmerkungen"
+      topic_accomodation: "Unterkunft"
+      accomodation_adress: "Adresse der Unterkunft"
+      accomodation_contacts: "Kontaktdaten der Unterkunft"
+      topic_transport: "Transport"
+      transport_contacts: "Kontaktdaten des Transportunternehmens"
+      topic_catering: "Verpflegung"
+      catering_adress: "Adresse des Verpflegungsortes"
+      catering_contacts: "Kontaktdaten des Verpflegungsortes"
+      topic_interpreter: "Dolmetscher"
+    messages:
+      created_success: "Projekt wurde erfolgreich erstellt."
+      refreshed_success: "Projekt wurde erfolgreich aktualisiert."
+      deleted_success: "Projekt wurde erfolgreich gelöscht."
+      name_blank: "Name ist erforderlich."
+      start_date_blank: "Startdatum ist erforderlich."
+      end_date_blank: "Enddatum ist erforderlich."
+      schedule_blank: "Zeitplan ist erforderlich."
+      participants_blank: "Teilnehmer*innen sind erforderlich."
+      location_blank: "Ort ist erforderlich."
+      clients_blank: "Kunden sind erforderlich."
+      expertise_blank: "Fachgebiete sind erforderlich."
+      project_type_blank: "Projekttyp ist erforderlich."
+      key_topics_blank: "Schwerpunktthemen sind erforderlich."
+      invalid_date_format: "Ungültiges Datum Format."
+      end_date_before_start_date: "Enddatum muss nach Startdatum liegen."
+    errors:
+      multiple_errors: "Fehler verhinderten"
+      single_error: "Fehler verhinderte"
+      saved: "dass dieses Projekt gespeichert werden konnte"
+      deleted: "Projekt wurde erfolgreich gelöscht."
+  categories:
+    category: "Themen-/Fachgebiet"
+    categories: "Themen-/Fachgebiete"
+    new_category: "Neues Themen-/Fachgebiet"
+    edit_categories: "Themen-/Fachgebiet verändern"
+    messages:
+      created: "Themen-/Fachgebiet wurde erfolgreich erstellt."
+      updated: "Themen-/Fachgebiet wurde erfolgreich aktualisiert."
+      destroyed: "Themen-/Fachgebiet wurde erfolgreich gelöscht."
+    errors:
+      name_missing: Themen-/Fachgebiet kann nicht ohne Namen erstellt werden
+      name_not_unique: Dieses Themen-/Fachgebiet existiert schon.
+      soft_deleted: Themen-/Fachgebiet wurde erfolgreich deaktiviert und ist für neue Experten nicht mehr auswählbar.
+      hard_deleted: "Kategorie wurde erfolgreich gelöscht."
+  course_modules:
+    course_module: "Kursmodul"
+    course_modules: "Kursmodule"
+    new_course_module: "Neues Kursmodul"
+    edit_course_module: "Kursmodul verändern"
+    messages:
+      created: "Kursmodul wurde erfolgreich erstellt."
+      updated: "Kursmodul wurde erfolgreich aktualisiert."
+      destroyed: "Kursmodul wurde erfolgreich gelöscht."
+    errors:
+      name_missing: Kursmodul kann nicht ohne Namen erstellt werden
+      name_not_unique: "Dieses Kursmodul existiert schon."
+      soft_deleted: "Kursmodul wurde erfolgreich deaktiviert und ist für neue Experten nicht mehr auswählbar."
+      hard_deleted: "Kurs wurde erfolgreich gelöscht."
+  errors:
+    delete_last_admin: Der letzte Admin kann nicht gelöscht werden.
+    change_last_admin: Die Rolle des letzten Admins kann nicht verändert werden.
+    expired_token: Der angegebene Einladungslink ist abgelaufen
+    invalid_token: Der angegebene Link ist ungültig
+    password_too_short: Das Password ist zu kurz
+    token_create_fail: Der Einladungslink konnte nicht erstellt werden
+  users:
+    register: Registrieren
+    create_token: Einladungslink erstellen
+    create_token_expert: Einladungslink für diesen Experten erstellen
+    send_token: Abschicken
+    token_mail: E-Mail der/des Expert*in
+    users: Benutzer*innen
+    read_only: Standard
+    admin: Admin
+    expert: Expert*in
+    password: Passwort
+    password_confirm: Passwort bestätigen
+    notice:
+      register_success: Ihr Profil wurde erfolgreich erstellt
+      token_created: Einladungslink erstellt
+    errors:
+      email_missing: Bitte geben Sie eine valide E-Mail ein.
+      password_missing: Passwort muss vorhanden sein.
+      delete_last_admin: Der letzte Admin kann nicht gelöscht werden.
+      change_last_admin: Die Rolle des letzten Admins kann nicht verändert werden.
+      expired_token: Der angegebene Einladungslink ist abgelaufen.
+      invalid_token: Der angegebene Link ist ungültig.
+      password_too_short: Das Passwort muss mindestens 6 Zeichen haben.
+      token_create_fail: Der Einladungslink konnte nicht erstellt werden.
+      already_initiated: Sie sind schon initialisiert mit einem Expert*innen Profil.
+      no_access: Sie haben nicht die nötige Berechtigung, um auf diese Seite zuzugreifen.
+      not_initiated: Ihnen ist kein Experten-Profil zugewiesen. Erstellen sie eins, oder falls sie glauben, dass sie schon ein Profil haben sollten, kontaktieren sie bitte den Inhaber der Seite.
+      not_your_expert: Sie haben keine Berechtigung auf dieses Expert*innen Profil zuzugreifen.
+      no_delete_access: Sie haben nicht die nötige Berechtigung eine/n Expert*in zu löschen. Wenn sie ihr Profil löschen wollen kontaktieren sie bitte den Inhaber der Seite.

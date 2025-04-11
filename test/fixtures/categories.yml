@@ -1,0 +1,19 @@
+computer_science:
+  id: 1
+  name: Informatik
+
+digitalize:
+  id: 2
+  name: Digitalisierung
+
+biology:
+  id: 3
+  name: Biologie
+
+science:
+  id: 4
+  name: Wissenschaft
+
+religion:
+  id: 5
+  name: Religion

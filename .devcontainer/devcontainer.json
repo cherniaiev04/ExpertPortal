@@ -1,0 +1,21 @@
+{
+  "name": "rails devcontainer",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "expertgrid",
+  "workspaceFolder": "/expertgrid",
+  "customizations": {
+    "vscode": {
+      "settings": {
+      	"ruby.useLanguageServer": true,
+        "terminal.integrated.shell.linux": "/bin/bash"
+      },
+      "extensions": [
+        "wingrunr21.vscode-ruby",
+        "castwide.solargraph",
+        "eamodio.gitlens"
+      ]
+    }
+  },
+  "forwardPorts": [3000],
+  "remoteUser": "root"
+}

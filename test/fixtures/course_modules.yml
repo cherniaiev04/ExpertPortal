@@ -1,0 +1,19 @@
+databases:
+  id: 1
+  name: SQL & No_SQL
+
+datanalysis:
+  id: 2
+  name: Wissenschaftsdaten
+
+genetik:
+  id: 3
+  name: Humanbiologie
+
+geography:
+  id: 4
+  name: Landkarte
+
+ethik:
+  id: 5
+  name: Moralideologie

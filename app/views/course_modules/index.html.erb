@@ -1,0 +1,55 @@
+<div class="container-fluid mt-5">
+  <div class="row justify-content-center">
+    <% content_for :title, I18n.t("course_modules.course_modules") %>
+    <div class="col-lg-8 col-md-12">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-4 col-md-12">
+          <h1><%= t("course_modules.course_modules") %></h1>
+        </div>
+        <div class="col-lg-4 col-md-6 text-md-end">
+          <%= link_to new_course_module_path, class: "btn btn-create border" do %>
+            <i class="fas fa-plus"></i> <%= I18n.t("course_modules.new_course_module")%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 col-md-12" id="course_modules">
+      <% @course_modules.each do |course_module| %>
+        <div class="card shadow my-3">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <%= render course_module %>
+            </div>
+            <div class="d-flex justify-content-end">
+              <%= link_to edit_course_module_path(course_module), class: "btn btn-edit me-2" do%>
+                <i class="fa-solid fa-pen-to-square"></i> <%= I18n.t("general.change") %>
+              <% end %>
+              <%= button_to course_module, method: :delete, class: "btn btn-delete" do %>
+                <i class="fa-solid fa-trash"></i> <%= I18n.t("general.delete") %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <hr class="my-5">
+    <div class="col-lg-8 col-md-12 my-2">
+      <h3><%= t("general.archived") %></h3>
+    </div>
+    <div class="col-lg-8 col-md-12">
+      <% @course_modules_inactive.each do |course_module| %>
+        <div class="card shadow my-3">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <%= render course_module %>
+            </div>
+            <div class="d-flex justify-content-end">
+              <%= link_to I18n.t("general.change"), edit_course_module_path(course_module), class: "btn btn-primary me-2" %>
+              <%= button_to t("general.delete"), course_module, method: :delete, data: { course_module_id: course_module.id }, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

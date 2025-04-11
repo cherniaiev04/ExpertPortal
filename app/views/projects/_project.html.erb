@@ -1,0 +1,52 @@
+<div id="<%= dom_id project %>">
+  <p>
+    <strong><%= I18n.t("projects.fields.name") %>:</strong>
+    <%= project.name %>
+  </p>
+
+  <p>
+    <strong><%= I18n.t("projects.fields.start_date") %>:</strong>
+    <%= project.time_period_start.strftime("%d.%m.%Y") if project.time_period_start %>
+  </p>
+
+  <p>
+    <strong><%= I18n.t("projects.fields.end_date") %>:</strong>
+    <%= project.time_period_end.strftime("%d.%m.%Y") if project.time_period_end %>
+  </p>
+
+  <p>
+    <strong><%= I18n.t("projects.fields.schedule") %>:</strong>
+    <%= project.schedule %>
+  </p>
+
+  <p>
+    <strong><%= I18n.t("projects.fields.participants") %>:</strong>
+    <%= project.participants %>
+  </p>
+
+  <p>
+    <strong><%= I18n.t("projects.fields.location") %>:</strong>
+    <%= project.location %>
+  </p>
+
+  <p>
+    <strong><%= I18n.t("projects.fields.clients") %>:</strong>
+    <%= project.clients %>
+  </p>
+
+  <p>
+    <strong><%= I18n.t("projects.fields.expertise") %>:</strong>
+    <%= project.expertise %>
+</p>
+
+<p>
+    <strong><%= I18n.t("projects.fields.project_type") %>:</strong>
+    <%= project.project_type %>
+</p>
+
+<p>
+    <strong><%= I18n.t("projects.fields.key_topics") %>:</strong>
+    <%= project.key_topics %>
+</p>
+
+</div>

@@ -1,0 +1,282 @@
+<%= stylesheet_link_tag "expertShow", media: "all", "data-turbo-track": "reload" %>
+<div class="container mt-5">
+  <div class="d-flex justify-content-between">
+    <!-- Expert Header -->
+    <div class="d-flex justify-content-center align-items-center">
+      <%= link_to experts_path, class: "btn btn-back"  do %>
+        <i class="fa-solid fa-arrow-left-long"></i> <%= I18n.t('general.back') %>
+      <% end %>
+    </div>
+    <h2 class="mb-2 text-uppercase fw-light">
+      <%= I18n.t('experts.expert') %> <strong>
+        <span class="text-uppercase fw-bold">
+          <%= @expert.title %> <%= @expert.firstname %> <%= @expert.name %>
+        </span>
+      </strong>
+    </h2>
+    <div class="d-flex justify-content-center align-items-center">
+      <%= link_to edit_expert_path(@expert), class: "btn btn-edit me-2" do %>
+        <i class="fa-solid fa-pen-to-square"></i> <%= I18n.t('general.change')%>
+      <% end %>
+      <div data-controller="delete-modal" data-delete-modal-url-value="<%= @expert %>">
+        <!-- Delete Button -->
+        <button id="deleteButton" class="btn btn-delete" data-action="click->delete-modal#showModal">
+          <i class="fa-solid fa-trash"></i> <%= I18n.t('general.delete') %>
+        </button>
+        <!-- Custom Modal -->
+        <div id="deleteModal" class="modal" tabindex="-1" role="dialog" style="display: none;" data-bs-backdrop="static" data-bs-keyboard="false" data-delete-modal-target="modal">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><%= I18n.t('experts.confirm_delete') %></h5>
+                <button type="button" class="close" aria-label="Close" data-action="click->delete-modal#hideModal">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p><%= I18n.t('general.no_return') %></p>
+              </div>
+              <div class="modal-footer">
+                <%= form_with url: @expert, method: :delete, local: true do |f| %>
+                  <%= f.submit I18n.t('general.delete'), class: "btn btn-danger" %>
+                <% end %>
+                <button type="button" class="btn btn-secondary" data-action="click->delete-modal#hideModal">
+                  <%= I18n.t('general.cancel') %>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <!-- Left Column: Personal Information -->
+    <div class="col-md-3">
+      <div class="card p-3 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title-custom mb-3 text-center"><%= I18n.t('experts.fields.personal_info') %></h5>
+          <div class="divider-line mb-3"></div>
+          <%# Personal Info Details %>
+          <div class="mt-3">
+            <p class="fw-normal mb-0 text-label"><%= I18n.t('experts.fields.salutation') %></p>
+            <h6 class="fw-medium mb-0 text-black"><%= @expert.salutation %></h6>
+          </div>
+          <div class="mt-3">
+            <p class="fw-normal mb-0 text-label"><%= I18n.t('experts.fields.firstname') %></p>
+            <h6 class="fw-medium mb-0 text-black"><%= @expert.firstname %></h6>
+          </div>
+          <div class="mt-3">
+            <p class="fw-normal mb-0 text-label"><%= I18n.t('experts.fields.lastname') %></p>
+            <h6 class="fw-medium mb-0 text-black"><%= @expert.name %></h6>
+          </div>
+          <% if @expert.institution_bool %>
+            <div class="mt-3">
+              <p class="fw-normal mb-0 text-label"><%= I18n.t('experts.fields.institution') %></p>
+              <h6 class="fw-medium mb-0 text-black"><%= @expert.institution %></h6>
+            </div>
+          <% end %>
+          <div class="mt-3">
+            <p class="fw-normal mb-0 text-label"><%= I18n.t('experts.fields.phone') %></p>
+            <h6 class="fw-medium mb-0 text-black"><%= @expert.telephone %></h6>
+          </div>
+          <div class="mt-3">
+            <p class="fw-normal mb-0 text-label"><%= I18n.t('experts.fields.email') %></p>
+            <h6 class="fw-medium mb-0 text-email"><%= @expert.email %></h6>
+            <%= form_with model: Invitation.new, url: invitations_path, local: true do |form| %>
+              <%= form.hidden_field :email, value: @expert.email %>
+              <%= form.submit t("users.create_token"), class: "btn-sm btn-create border border-dark mt-1" %>
+            <% end %>
+          </div>
+          <div class="mt-3">
+            <p class="fw-normal mb-0 text-label"><%= I18n.t('experts.fields.location') %></p>
+            <h6 class="fw-medium mb-0 text-black"><%= @expert.location %></h6>
+          </div>
+          <div class="mt-3">
+            <p class="fw-normal mb-0 text-label"><%= I18n.t('experts.fields.nationality') %></p>
+            <h6 class="fw-medium mb-0 text-black"><%= @expert.nationality %></h6>
+          </div>
+        </div>
+      </div>
+      <div class="card p-3 mt-4 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title-custom mb-3"><%= I18n.t("experts.fields.communication_language") %></h5>
+          <div class="d-flex justify-content-center">
+            <% @expert.communication_language&.sort&.each do |language| %>
+              <span style="height: 30px;" class="badge-pill border text-dark me-2 mb-2"><%= language %></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="card p-3 mt-4 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title-custom mb-3 text-center"><%= I18n.t('experts.fields.additional_info') %></h5>
+          <div class="divider-line mb-3"></div>
+          <p><%= @expert.additionalInfo %></p>
+        </div>
+      </div>
+    </div>
+    <!-- Right Column: Main Details -->
+    <div class="col-md-9">
+      <div class="card p-3 shadow-sm mb-4">
+        <div class="card-body">
+          <h5 class="card-title-custom mb-3"><%= I18n.t('experts.fields.expertise_expertise') %></h5>
+          <div class="row">
+            <div class="col-md-2"><strong><%= I18n.t('experts.fields.categories') %>:</strong></div>
+            <div class="col-md-10 d-flex flex-wrap">
+              <% @expert.categories&.each do |category| %>
+                <span style="height: 30px;" class="badge-pill border text-dark me-2 mb-2"><%= category.name %></span>
+              <% end %>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-2"><strong><%= I18n.t('experts.fields.expertise') %>:</strong></div>
+            <div class="col-md-10"><%= @expert.expertise %></div>
+          </div>
+        </div>
+      </div>
+      <div class="card p-3 shadow-sm mb-4">
+        <div class="card-body">
+          <h5 class="card-title-custom mb-3"><%= I18n.t('experts.fields.exp_in_china') %></h5>
+          <div class="row">
+            <div class="col-md-10"><%= @expert.expInChina %></div>
+          </div>
+        </div>
+      </div>
+      <div class="row g-3 d-flex align-items-stretch">
+        <div class="col-md-4">
+          <div class="card p-1 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title-custom mb-3"><%= I18n.t("experts.fields.travel_willingness") %></h5>
+              <div class="d-flex justify-content-center">
+                <% @expert.travel_willingness&.sort&.each do |travel| %>
+                  <span style="height: 30px;" class="badge-pill border text-dark me-2 mb-2"><%= travel %></span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card p-1 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title-custom mb-3"><%= I18n.t("experts.fields.lesson_language") %></h5>
+              <div class="d-flex justify-content-center">
+                <% @expert.lesson_language&.sort&.each do |language| %>
+                  <span style="height: 30px;" class="badge-pill border text-dark me-2 mb-2"><%= language %></span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card p-1 shadow-sm h-100">
+            <div class="card-body">
+              <div class="row mt-2">
+                <div class="col-md-6">
+                  <h6 class="fw-normal mb-0" style="color: #A8A8A8"><%= I18n.t('experts.fields.hourly_rate') %></h6>
+                </div>
+                <div class="col-md-6">
+                  <h6 class="fw-normal mb-0" style="color: #A8A8A8"><%= I18n.t('experts.fields.daily_rate') %></h6>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-6">
+                  <h4 class="fw-bold mb-0 text-black"><%= @expert.hourlyRate %> €</h4>
+                </div>
+                <div class="col-md-6">
+                  <h4 class="fw-bold mb-0 text-black"><%= @expert.dailyRate %> €</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-3 shadow-sm mt-4">
+        <div class="card-body">
+          <h5 class="card-title-custom mb-3"><%= I18n.t('experts.fields.travel_info') %></h5>
+          <div class="row">
+            <div class="col-md-10"><%= @expert.travel_info %></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-3 shadow-sm mt-4">
+        <div class="card-body">
+          <h5 class="card-title-custom mb-3"><%= I18n.t('experts.fields.short_term_availability') %></h5>
+          <div class="row">
+            <p><%= @expert.short_term_availability %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 d-flex align-items-stretch mt-3">
+        <!-- CV Section -->
+        <div class="col-md-12">
+          <div class="card p-1 shadow-sm h-100">
+            <div class="card-body">
+              <!-- CV Section -->
+              <div class="mb-4">
+                <h5 class="card-title-custom mb-3"><%= I18n.t("experts.fields.cv") %></h5>
+                <% if @expert.cv.attached? && @expert.cv.content_type == "application/pdf" %>
+                  <div class="d-flex align-items-center bg-light rounded p-2 shadow-sm justify-content-between">
+                    <!-- PDF Icon and Filename -->
+                    <div class="d-flex align-items-center">
+                      <i class="fas fa-file-pdf text-primary me-3" style="font-size: 1.5rem;"></i>
+                      <div>
+                        <%= link_to @expert.cv.filename.to_s, rails_blob_path(@expert.cv, disposition: "inline"), target: "_blank", class: "text-decoration-none text-dark fw-bold" %>
+                      </div>
+                    </div>
+                    <!-- Download Icon -->
+                    <div>
+                      <%= link_to rails_blob_path(@expert.cv, disposition: "attachment"), class: "text-primary ms-3", title: I18n.t("experts.cv_download") do %>
+                        <i class="fa-solid fa-cloud-arrow-down" style="font-size: 1.5rem;"></i>
+                      <% end %>
+                    </div>
+                  </div>
+                <% else %>
+                  <div class="bg-light rounded p-2 shadow-sm">
+                    <i class="fas fa-exclamation-circle text-warning me-3" style="font-size: 1.5rem;"></i>
+                    <span class="text-muted"><%= I18n.t("experts.cv_not_uploaded") %></span>
+                  </div>
+                <% end %>
+              </div>
+              <!-- Certificates Section -->
+              <div class="mb-4">
+                <h5 class="card-title-custom mb-3"><%= I18n.t("experts.fields.certificates") %></h5>
+                <% if @expert.certificates.attached? %>
+                  <% @expert.certificates.each do |certificate| %>
+                    <div class="d-flex align-items-center bg-light rounded p-2 shadow-sm justify-content-between mb-2">
+                      <!-- File Icon and Filename -->
+                      <div class="d-flex align-items-center">
+                        <i class="fas fa-file-alt text-secondary me-3" style="font-size: 1.5rem;"></i>
+                        <div>
+                          <%= link_to certificate.filename.to_s, rails_blob_path(certificate, disposition: "inline"), target: "_blank", class: "text-decoration-none text-dark fw-bold" %>
+                        </div>
+                      </div>
+                      <!-- Download Icon -->
+                      <div>
+                        <%= link_to rails_blob_path(certificate, disposition: "attachment"), class: "text-secondary ms-3", title: I18n.t("experts.certificate_download") do %>
+                          <i class="fa-solid fa-cloud-arrow-down" style="font-size: 1.5rem;"></i>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <div class="bg-light rounded p-2 shadow-sm">
+                    <i class="fas fa-exclamation-circle text-warning me-3" style="font-size: 1.5rem;"></i>
+                    <span class="text-muted"><%= I18n.t("experts.certificates_not_uploaded") %></span>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Navigation Buttons -->
+<div class="d-flex justify-content-between mt-4">
+</div>
+</div>

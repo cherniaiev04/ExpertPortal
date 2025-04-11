@@ -1,0 +1,88 @@
+body {
+    background-color: #F3EED9;
+}
+
+/* Custom styles for the search bar */
+.search-bar {
+    max-width: 400px;
+    /* Adjust width as needed */
+    margin: 0;
+    border: 2px solid #C21827;
+    /* Red border color */
+    border-radius: 5px;
+    /* Rounded corners */
+    overflow: hidden;
+    /* Clip overflowing elements */
+}
+
+.search-bar .input-group-prepend .input-group-text {
+    background-color: transparent;
+    /* Transparent background for icon */
+    border: none;
+    /* Remove border around icon area */
+}
+
+.search-bar .input-group-prepend .input-group-text i {
+    color: #333;
+    /* Color for the search icon */
+}
+
+.search-bar input.form-control {
+    border: none;
+    /* Remove border on input */
+    box-shadow: none;
+    /* Remove shadow on input */
+}
+
+.search-bar input.form-control:focus {
+    outline: none;
+    /* Remove focus outline */
+    box-shadow: none;
+    /* Remove focus shadow */
+}
+
+.new-button {
+    background-color: #D30031;
+
+}
+
+/* Style for table header background */
+.table thead th {
+    color: black;
+    background-color: #BFA5A3;
+}
+
+/* Style for table rows with no borders */
+.table-borderless tbody tr {
+    border-top: none;
+}
+
+/* Hover effect for table rows */
+.table-hover tbody tr:hover {
+    background-color: #f2f2f2;
+    /* Light grey background on hover */
+}
+
+/* Optional: Additional padding for cells */
+.table tbody td {
+    padding: 10px;
+}
+
+.filter-option {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    /* Grey background */
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-option.selected {
+    background-color: #ff4d4d;
+    /* Red background */
+    color: white;
+    /* White text */
+}

@@ -1,0 +1,496 @@
+<%= stylesheet_link_tag "projectShow", media: "all", "data-turbo-track": "reload" %>
+<!-- Bootstrap Bundle with Popper.js -->
+<div class="container-md">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="accordion mt-5" id="myAccordion">
+        <div class="accordion-item mt-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button fs-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+              <%= I18n.t("projects.fields.topic_project_plan") %>:
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col-md-6 text-center">
+                  <div class="row mb-3">
+                    <%# Left Column %>
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.dates") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.project_shedule") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.budget_plan") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                </div>
+                <%# Right Column %>
+                <div class="col-md-6 text-center">
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.flight_date") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.accompanying_person") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.expert_presentation") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mt-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+              <%= I18n.t("projects.fields.topic_cordination") %>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col-md-6 text-center">
+                  <div class="row mb-3">
+                    <%# Left Column %>
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.event_location") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.adress_of_event") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.contacts_details_of_event") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                </div>
+                <%# Right Column %>
+                <div class="col-md-6 text-center">
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.offer") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.invoice") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.remarks") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mt-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+              <%= I18n.t("projects.fields.topic_accomodation") %>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col-md-6 text-center">
+                  <div class="row mb-3">
+                    <%# Left Column %>
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.topic_accomodation") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.accomodation_adress") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.accomodation_contacts") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                </div>
+                <%# Right Column %>
+                <div class="col-md-6 text-center">
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.offer") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.invoice") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.remarks") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mt-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+              <%= I18n.t("projects.fields.topic_transport") %>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col-md-6 text-center">
+                  <div class="row mb-3">
+                    <%# Left Column %>
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.transport_contacts") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.topic_interpreter") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                </div>
+                <%# Right Column %>
+                <div class="col-md-6 text-center">
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.offer") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.invoice") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.remarks") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mt-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+              <%= I18n.t("projects.fields.topic_catering") %>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col-md-6 text-center">
+                  <div class="row mb-3">
+                    <%# Left Column %>
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.catering_adress") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.catering_contacts") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                </div>
+                <%# Right Column %>
+                <div class="col-md-6 text-center">
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.offer") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.invoice") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.remarks") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mt-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix">
+              <%= I18n.t("projects.fields.topic_interpreter") %>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col-md-6 text-center">
+                  <%# Left Column %>
+                </div>
+                <%# Right Column %>
+                <div class="col-md-6 text-center">
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.offer") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.invoice") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 text-muted">
+                      <p><%= I18n.t("projects.fields.remarks") %>:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="fw-bold">  </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card p-3 shadow-sm mt-4">
+          <div class="card-body">
+            <h5 class="card-title-custom mb-3"><%= I18n.t('projects.fields.expert') %></h5>
+            <div class="row">
+              <div class="col-md-10 d-flex flex-wrap">
+                <% @project.experts&.each do |expert| %>
+                  <a href="<%= expert_path(expert.id) %>" class="text-decoration-none">
+                    <span style="height: 30px; cursor: pointer;" class="badge-pill p-2 border text-dark me-2 mb-2">
+                      <%= expert.title %> <%= expert.firstname %> <%= expert.name %>
+                    </span>
+                  </a>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="container-fluid mt-5 p-4 border rounded shadow" style="background-color: white">
+        <div class="text-center mb-4 border-bottom pb-3">
+          <h2 class="fw-bold"><%= I18n.t("projects.details") %></h2>
+        </div>
+        <div class="row">
+          <!-- Left Column -->
+          <div class="col-md-12 text-center">
+            <div class="row mb-3">
+              <div class="col-md-4 text-muted">
+                <p><%= I18n.t("projects.fields.name") %>:</p>
+              </div>
+              <div class="col-md-8">
+                <h5 class="fw-bold"> <%= @project.name%> </h5>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4 text-muted">
+                <p><%= I18n.t("projects.fields.clients") %>:</p>
+              </div>
+              <div class="col-md-8">
+                <h5 class="fw-bold"> <%= @project.clients%> </h5>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4 text-muted">
+                <p><%= I18n.t("projects.fields.start_date") %>:</p>
+              </div>
+              <div class="col-md-8">
+                <h5 class="fw-bold"> <%= @project.time_period_start&.strftime('%d.%m.%Y')%> </h5>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4 text-muted">
+                <p><%= I18n.t("projects.fields.end_date") %>:</p>
+              </div>
+              <div class="col-md-8">
+                <h5 class="fw-bold"> <%= @project.time_period_end&.strftime('%d.%m.%Y')%> </h5>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4 text-muted">
+                <p><%= I18n.t("projects.fields.location") %>:</p>
+              </div>
+              <div class="col-md-8">
+                <% Array(@project.location).each do |l| %>
+                  <h5 class="fw-bold"><%= l %></h5>
+                <% end %>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4 text-muted">
+                <p><%= I18n.t("projects.fields.key_topics") %>:</p>
+              </div>
+              <div class="col-md-8">
+                <% Array(@project.key_topics).each do |t| %>
+                  <div class="row">
+                    <h6 class="fw-bold"><%= t %></h6>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4 text-muted">
+                <p><%= I18n.t("projects.fields.project_type") %>:</p>
+              </div>
+              <div class="col-md-8">
+                <% Array(@project.project_type).each do |t| %>
+                  <div class="row">
+                    <h6 class="fw-bold"><%= t %></h6>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4 text-muted">
+                <p><%= I18n.t("projects.fields.participants") %>:</p>
+              </div>
+              <div class="col-md-8">
+                <h5 class="fw-bold"> <%= @project.participants%> </h5>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4 text-muted">
+                <p><%= I18n.t("projects.fields.expertise") %>:</p>
+              </div>
+              <div class="col-md-8">
+                <h5 class="fw-bold"> <%= @project.expertise%> </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between mt-3">
+        <%# Back %>
+        <%= link_to  projects_path, class: "btn btn-back" do %>
+          <i class="fa-solid fa-arrow-left-long"></i> <%= I18n.t("general.back") %>
+        <% end %>
+        <%# Edit %>
+        <%= link_to edit_project_path(@project), class: "btn btn-edit" do %>
+          <i class="fa-solid fa-pen-to-square"></i> <%= I18n.t("general.change") %>
+        <% end %>
+        <%# Delete  %>
+        <%= button_to @project, method: :delete, class: "btn btn-delete" do %>
+          <i class="fa-solid fa-trash"></i> <%= I18n.t("general.delete") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

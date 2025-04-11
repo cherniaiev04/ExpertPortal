@@ -1,0 +1,50 @@
+image: ruby:3.3.5-alpine
+
+stages:
+  - test
+  - deploy
+
+test_job:
+  stage: test
+  variables:
+    RAILS_ENV: test
+    DATABASE_URL: "sqlite3:db/test.sqlite3"
+  before_script:
+    - apk update && apk add bash nodejs make gcc g++ libc-dev git libc6-compat chromium chromium-chromedriver nss freetype harfbuzz ttf-freefont libxshmfence udev libpq-dev
+    - bundle install --without development production
+    - rails db:create db:migrate
+  script:
+    # Run all Rails tests, including system tests (Selenium)
+    - rails test
+    - rails test:system
+  services:
+    - selenium/standalone-chrome
+  artifacts:
+    when: always
+    paths:
+      - coverage/
+  environment:
+    name: test
+
+deploy_job:
+  stage: deploy
+  only:
+    - main
+  variables:
+    APP_NAME: $HEROKU_APP_NAME
+    HEROKU_API_KEY: $HEROKU_API_KEY
+    DATABASE_URL: "sqlite3:db/development.sqlite3"
+    RAILS_ENV: production
+  before_script:
+    - apk add --no-cache git build-base libxml2-dev libxslt-dev sqlite-dev postgresql-dev curl
+    - gem install bundler
+    - bundle install --without development test
+    - |
+      if ! git remote | grep -q heroku; then
+        git remote add heroku https://git.heroku.com/$APP_NAME.git
+      fi
+  script:
+    - gem install dpl
+    - dpl --provider=heroku --app=$APP_NAME --api-key=$HEROKU_API_KEY
+  environment:
+    name: production

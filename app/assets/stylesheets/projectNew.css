@@ -1,0 +1,12 @@
+body {
+    background-color: #f3eed9;
+}
+
+.input-field {
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+.new-button {
+    background-color: #d30031;
+}

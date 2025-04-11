@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Alle Profile</h1>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Benutzername/Email</th>
+        <th>Erstellungsdatum</th>
+        <th>Rolle</th>
+        <th>Aktionen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.created_at.strftime("%d.%m.%Y") %></td>
+          <td>
+            <% if user.admin? %>
+              Admin
+            <% end %>
+            <% if user.user? %>
+              Nutzer*in
+            <% end %>
+            <% if user.expert? %>
+              Experte*in
+            <% end %>
+          </td>
+          <td style="white-space: nowrap; width: 1%;">
+            <div class="d-flex align-items-center">
+              <%= link_to edit_user_path(user), class: "btn btn-sm btn-edit mr-2" do %>
+                <i class="fas fa-edit"></i> <%= I18n.t("general.change") %>
+              <% end %>
+              <%= button_to admin_destroy_user_path(user), method: :delete, class: 'btn btn-sm btn-delete' do %>
+                <i class="fas fa-trash-alt"></i> <%= I18n.t("general.delete") %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h2 class="text-center text-black mb-4"><%= t("users.create_token") %></h2>
+        <%= form_with model: Invitation.new, url: invitations_path, local: true, class: "p-4 border rounded bg-light shadow-sm" do |form| %>
+          <div class="mb-3">
+            <%= form.label :email, t("users.token_mail"), class: "form-label fw-bold text-secondary" %>
+            <%= form.email_field :email, class: "form-control", required: true %>
+          </div>
+          <div class="d-grid">
+            <%= button_tag type: 'submit', class: 'btn btn-primary btn-lg' do %>
+              <i class="fa-solid fa-paper-plane me-2"></i> <%= t("users.send_token") %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

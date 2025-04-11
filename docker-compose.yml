@@ -1,0 +1,17 @@
+services:
+    expertgrid:
+        build: .
+        ports:
+            - "127.0.0.1:3000:3000"
+        volumes:
+            - "./:/expertgrid"
+        command: rails server -b 0.0.0.0
+        container_name: expertgrid-app-1
+        environment:
+            - SMTP_ADDRESS
+            - SMTP_PORT
+            - SMTP_USERNAME
+            - SMTP_PASSWORD
+            - SMTP_DOMAIN
+        stdin_open: true
+        tty: true

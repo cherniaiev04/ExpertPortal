@@ -1,0 +1,28 @@
+project_expertgrid:
+  id: 1
+  name: Xpert
+  time_period_start: 2024-12-12
+  time_period_end: 2025-12-12
+  schedule: "Projektzeitplan für ExpertGrid"
+  participants: "Alex"
+  location:
+    - "Hong Kong"
+  clients: "Xiaomi"
+  expertise: "Bow-Hunting"
+  project_type:
+    - "Health Care"
+  key_topics:
+    - "Fitness"
+
+project_experthub:
+  id: 2
+  name: ExpertHub
+  time_period_start: 2024-11-12
+  time_period_end:  2025-11-12
+  schedule: "Projektzeitplan für ExpertHub"
+  participants: "Max"
+  location: "Shanghai"
+  clients: "Alibaba"
+  expertise: "Fishing"
+  project_type: "Construction"
+  key_topics: "Vehicle"

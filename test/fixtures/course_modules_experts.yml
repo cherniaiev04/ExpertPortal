@@ -1,0 +1,19 @@
+alice_computer_science:
+  expert_id: 1
+  course_module_id: 1
+
+alice_digitalize:
+  expert_id: 1
+  course_module_id: 2
+
+bob_biology:
+  expert_id: 2
+  course_module_id: 3
+
+evelina_biology:
+  expert_id: 3
+  course_module_id: 3
+
+evelina_science:
+  expert_id: 3
+  course_module_id: 4

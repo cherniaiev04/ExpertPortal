@@ -1,0 +1,52 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+alice:
+  id: 1
+  salutation: Frau
+  title: Dr. Prof.
+  name: Fischer
+  firstname: Alice
+  email: alice.fischer@yahoo.de
+  expertise: Digitale Verwaltung in staatlichen Intitutionen
+  institution_bool: true
+  institution: Stadt Heilbronn
+  telephone: 0049 157 8065094
+  nationality: Deutsch
+  hourlyRate: 100
+  dailyRate: 1000
+  expInChina: Ich habe in China für 2 Jahre gearbeitet
+  additionalInfo: Keine
+  travel_willingness: ["Online", "Deutschland"]
+
+bob:
+  id: 2
+  salutation: Herr
+  title: Akademiker
+  name: Schaffner
+  firstname: Bob
+  email: bob.schaffner@gmx.de
+  expertise: Meeresbiologie
+  institution_bool: false
+  telephone: 0049 123 47256402
+  nationality: Deutsch
+  hourlyRate: 25
+  dailyRate: 400
+  expInChina: Keine
+  additionalInfo: Keine
+
+evelina:
+  id: 3
+  salutation: Frau
+  title: Dr.
+  name: Müller
+  firstname: Evelina
+  email: dr.evelin.mueller@gmail.com
+  expertise: Zahnmedizin
+  institution_bool: true
+  institution: Zahnarztpraxis Müller und Bangert
+  telephone: 0049 472 63522204
+  nationality: Deutsch
+  hourlyRate: 140
+  dailyRate: 1200
+  expInChina: Meine Frau kommt aus China
+  additionalInfo: Keine

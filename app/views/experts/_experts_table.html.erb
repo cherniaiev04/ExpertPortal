@@ -1,0 +1,28 @@
+<table class="table table-hover table-borderless m-0 pt-5" style="width: 100%;">
+  <thead>
+    <tr style="border: 1px solid #000000">
+      <th scope="col" class="fw-light"><%= I18n.t('experts.fields.name').upcase %></th>
+      <th scope="col" class="fw-light"><%= I18n.t('experts.fields.categories').upcase %></th>
+      <th scope="col" class="fw-light"><%= I18n.t('experts.fields.communication_language').upcase %></th>
+      <th scope="col" class="fw-light"><%= I18n.t('experts.fields.lesson_language').upcase %></th>
+      <th scope="col" class="fw-light"><%= I18n.t('experts.fields.travel_willingness').upcase %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% experts.each do |expert| %>
+      <tr class="expert-row" data-expert-id="<%= expert.id %>">
+        <td><%= expert.firstname + " " + expert.name %></td>
+        <td>
+          <% if expert.categories.any? %>
+            <%= expert.categories.map(&:name).join(', ') %>
+          <% else %>
+            <%= I18n.t('experts.errors.no_category_assigned') %>
+          <% end %>
+        </td>
+        <td><%= Array(expert.communication_language).sort.join(', ') %></td>
+        <td><%= Array(expert.lesson_language).sort.join(', ') %></td>
+        <td><%= Array(expert.travel_willingness).sort.join(', ') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

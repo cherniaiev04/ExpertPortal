@@ -1,0 +1,19 @@
+alice_computer_science:
+  expert_id: 1
+  category_id: 1
+
+alice_digitalize:
+  expert_id: 1
+  category_id: 2
+
+bob_biology:
+  expert_id: 2
+  category_id: 3
+
+evelina_biology:
+  expert_id: 3
+  category_id: 3
+
+evelina_science:
+  expert_id: 3
+  category_id: 4

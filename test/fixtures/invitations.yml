@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+valid:
+  token: abc
+  email: alice@gmx.de
+  expires_at: 3024-11-10 11:13:55
+  used: false
+
+expired:
+  token: xyz
+  email: bob@gmx.de
+  expires_at: 2020-11-10 11:13:55
+  used: false
+
+evelina:
+  token: 17000000Ar
+  email: dr.evelin.mueller@gmail.com
+  expires_at: 3024-11-10 11:13:55
+  used: false

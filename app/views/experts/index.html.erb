@@ -1,0 +1,102 @@
+<%= stylesheet_link_tag "expertIndex", media: "all", "data-turbo-track": "reload" %>
+<%= javascript_include_tag "controllers/click_table_experts", "data-turbo-track": "reload" %>
+<% content_for :title, I18n.t('experts.experts') %>
+<div class="container-md">
+  <h1><%= I18n.t('experts.experts') %></h1>
+  <div class="container-fluid p-0" style="background-color: white; border: 2px solid #A8A8A8">
+    <%# First Row: Search Bar and New Expert Button %>
+    <div class="row mb-3 pt-3 align-items-center">
+      <%# Search Bar %>
+      <div class="col-md-8 ps-4">
+        <%= form_with url: experts_path, method: :get, local: false do %>
+          <div class="input-group search-bar">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: I18n.t('experts.search') %>
+          </div>
+        <% end %>
+      </div>
+      <%# Create New Expert Button %>
+      <div class="col-md-4 pe-4 d-flex justify-content-end">
+        <%= link_to new_expert_path, class: 'btn btn-create' do %>
+          <i class="fas fa-plus"></i> <%= I18n.t('experts.new_expert') %>
+        <% end %>
+      </div>
+    </div>
+    <%# Filter Form Rows %>
+    <%= form_with url: experts_path, method: :get, local: false, id: "filters-form", data: { controller: "filter-experts", "filter-experts-target": "form" } do %>
+      <%# First Filters Row %>
+      <div class="row mb-3 px-4">
+        <%# Communication Language Filter %>
+        <div class="col-md-auto d-flex flex-wrap align-items-center">
+          <strong class="me-2 fw-bold"><%= I18n.t('experts.filters.communication_language') %>:</strong>
+          <% ["Deutsch", "Englisch", "Chinesisch"].each do |language| %>
+            <span 
+              class="filter-option me-2 small fw-light <%= 'selected' if params.dig(:filters, :communication_language)&.include?(language) %>" 
+              data-filter="communication_language" 
+              data-value="<%= language %>" 
+              data-action="click->filter-experts#toggleFilter">
+              <%= language %>
+            </span>
+            <% if params.dig(:filters, :communication_language)&.include?(language) %>
+              <%= hidden_field_tag "filters[communication_language][]", language %>
+            <% end %>
+          <% end %>
+        </div>
+        <%# Lesson Language Filter %>
+        <div class="col-md-auto d-flex flex-wrap align-items-center">
+          <strong class="me-2 fw-bold"><%= I18n.t('experts.filters.lesson_language') %>:</strong>
+          <% ["Deutsch", "Englisch", "Chinesisch"].each do |language| %>
+            <span 
+              class="filter-option me-2 small fw-light <%= 'selected' if params.dig(:filters, :lesson_language)&.include?(language) %>" 
+              data-filter="lesson_language" 
+              data-value="<%= language %>" 
+              data-action="click->filter-experts#toggleFilter">
+              <%= language %>
+            </span>
+            <% if params.dig(:filters, :lesson_language)&.include?(language) %>
+              <%= hidden_field_tag "filters[lesson_language][]", language %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <%# Second Filters Row %>
+      <div class="row mb-3 px-4 align-items-center">
+        <%# Travel Willingness Filter %>
+        <div class="col-md-9 d-flex flex-wrap align-items-center">
+          <strong class="me-2 fw-bold"><%= I18n.t('experts.filters.travel_willingness') %>:</strong>
+          <% ["Online", "Deutschland", "China"].each do |location| %>
+            <span 
+              class="filter-option me-2 small fw-light <%= 'selected' if params.dig(:filters, :travel_willingness)&.include?(location) %>" 
+              data-filter="travel_willingness" 
+              data-value="<%= location %>" 
+              data-action="click->filter-experts#toggleFilter">
+              <%= location %>
+            </span>
+            <% if params.dig(:filters, :travel_willingness)&.include?(location) %>
+              <%= hidden_field_tag "filters[travel_willingness][]", location %>
+            <% end %>
+          <% end %>
+        </div>
+        <%# Buttons Section %>
+        <div class="col-md-3 d-flex justify-content-end">
+          <%# Clear All Filters Button %>
+          <button type="button" class="btn btn-delete me-3" data-action="click->filter-experts#clearFilters">
+            <i class="fas fa-times"></i> <%= I18n.t('experts.filters.clear_all') %>
+          </button>
+          <%# Submit Button %>
+          <button type="submit" class="btn btn-secondary">
+            <i class="fas fa-search"></i> <%= I18n.t('experts.filters.find') %>
+          </button>
+        </div>
+      </div>
+    <% end %>
+    <%# Full-width Line %>
+    <hr class="w-100 m-0 pb-3">
+    <%# Table %>
+    <%= turbo_frame_tag "experts" do %>
+      <%= render "experts_table", experts: @experts %>
+    <% end %>
+  </div>
+</div>

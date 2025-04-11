@@ -1,0 +1,334 @@
+<%= stylesheet_link_tag "expertNew", media: "all", "data-turbo-track": "reload" %>
+<div class="container-md mt-5">
+  <h2 class="mb-2 text-uppercase fw-light"><strong><span class="text-uppercase fw-bold"><%= I18n.t('experts.experts') %></span></strong> <%= I18n.t('general.create') %></h2>
+  <%= form_with(model: @expert, local: true, html: { multipart: true }) do |form| %>
+    <% if @expert.errors.any? %>
+      <div class="col-md-6 offset-md-3 alert alert-danger">
+        <h5><%= @expert.errors.count %> <%= I18n.t('general.errors.something_wrong') %></h5>
+        <ul>
+          <% @expert.errors.messages.each do |attribute, messages| %>
+            <% messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="container-fluid p-3" style="background-color: white;">
+      <div class="row">
+        <div class="col-md-2 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :title, I18n.t('experts.fields.title') %>
+          <%= form.text_field :title, class: "form-control input-field", placeholder: I18n.t("experts.placeholder.title") %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :salutation, I18n.t('experts.fields.salutation') %>
+          <%= form.select :salutation, @salutations, { include_blank: false }, class: "form-control input-field" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :firstname, I18n.t('experts.fields.firstname') %>
+          <%= form.text_field :firstname, class: "form-control input-field", placeholder: "Max" %>
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :name, I18n.t('experts.fields.lastname') %>
+          <%= form.text_field :name, class: "form-control input-field", placeholder: "Musterman" %>
+        </div>
+      </div>
+
+      <div class="row" data-controller="toggle-visibility">
+        <!-- Checkbox for institution_bool -->
+        <div class="col-md-3 offset-md-3 mt-3 fw-semibold">
+          <%= form.label :institution_bool, I18n.t("experts.institution_bool") %>
+          <%= form.check_box :institution_bool,
+              data: {
+                toggle_visibility_target: "checkbox",
+                action: "change->toggle-visibility#toggle"
+              },
+              checked: @expert.institution_bool %>
+        </div>
+
+        <!-- Container div for the institution text field -->
+        <div data-toggle-visibility-target="container" id='institution_container' class="<%= @expert.institution_bool ? 'd-block' : 'd-none' %>">
+          <div class="col-md-3 offset-md-3 mt-1 mb-3 fw-semibold p-2">
+            <%= form.label :institution %>
+            <%= form.text_field :institution, class: "form-control input-field", placeholder: I18n.t("experts.placeholder.institution") %>
+          </div>
+          <div class="col-md-6 offset-md-3 mt-1 mt-3 fw-semibold p-2">
+        <%= form.label :cooperation, I18n.t('experts.fields.cooperation') %>
+        <%= form.text_area :cooperation, class: "form-control input-field", placeholder: I18n.t("experts.placeholder.cooperation") %>
+      </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6 offset-md-3 my-3 fw-semibold">
+          <%= form.label :communication_language, I18n.t('experts.fields.communication_language') %>
+          <div data-controller="tags" data-tags-field-name="expert[communication_language][]">
+            <select
+              id="communication_select"
+              class="form-select input-field"
+              data-tags-target="select"
+              data-action="change->tags#addFromSelect"
+              >
+              <option value="" disabled selected><%= I18n.t("general.select") %></option>
+              <% @expert_languages.each do |language| %>
+                <option value="<%= language %>"><%= language %></option>
+              <% end %>
+            </select>
+            <div id="selected_communication_language" class="mt-2" data-tags-target="container" data-action="click->tags#remove">
+              <% @expert.communication_language&.sort&.each do |language| %>
+                <span class="badge-pill bg-primary text-light me-2 mt-2 selected-tag d-inline-flex align-items-center" data-tag-value="<%= language %>">
+                  <%= language %>
+                  <button type="button" class="btn-close btn-close-white btn-sm ms-1"></button>
+                  <input type="hidden" name="expert[communication_language][]" value="<%= language %>">
+                </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :location, I18n.t('experts.fields.location') %>
+          <%= form.text_field :location, class: "form-control input-field", placeholder: "München" %>
+        </div>
+      </div>
+      <%# Line %>
+      <div class="col-8 offset-md-2">
+        <hr class="my-3">
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :email, I18n.t('experts.fields.email') %>
+          <%= form.email_field :email, class: "form-control input-field", placeholder: "you@company.com" %>
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :telephone, I18n.t('experts.fields.phone') %>
+          <%= form.telephone_field :telephone, class: "form-control input-field", placeholder: "+49 111 2233 444" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :nationality, I18n.t('experts.fields.nationality') %>
+          <%= form.text_field :nationality, class: "form-control input-field", placeholder: "Deutsch" %>
+        </div>
+      </div>
+      <%# Line %>
+      <div class="col-8 offset-md-2">
+        <hr class="my-3">
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 fw-semibold mt-3">
+          <%= form.label :categories, I18n.t('experts.fields.categories') + "*" %>
+          <div data-controller="tags" data-tags-field-name="expert[category_ids][]">
+            <select
+                  id="category_select"
+                  class="form-select input-field"
+                  data-tags-target="select"
+                  data-action="change->tags#addFromSelect"
+              >
+              <option value="" disabled selected><%= I18n.t("general.select") %></option>
+              <% @categories.each do |category| %>
+                <option value="<%= category.id %>"><%= category.name %></option>
+              <% end %>
+            </select>
+            <div id="selected_categories" class="mt-2" data-tags-target="container" data-action="click->tags#remove">
+              <% @expert.categories.each do |category| %>
+                  <span
+                    class="selected-tag"
+                    style="background-color:#d40031; color:white; border-radius:9999px; padding:0rem 0.5rem; margin-top:0.25rem; margin-bottom:0.25rem; display:inline-flex; align-items:center;"
+                    data-tag-value="<%= category.id %>">
+                    <%= category.name %>
+                    <span
+                      style="margin-left:0.5rem; cursor:pointer; font-weight:normal;"
+                      data-action="click->tags#remove">x</span>
+                    <input type="hidden" name="expert[category_ids][]" value="<%= category.id %>">
+                  </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 mt-3 fw-semibold">
+          <%= form.label :expertise, I18n.t('experts.fields.expertise') %>
+          <%= form.text_area :expertise, class: "form-control input-field", rows: 3, id: "Expertise" %>
+        </div>
+      </div> <div class="row">
+    </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 fw-semibold mt-3">
+          <%= form.label :lesson_language, I18n.t('experts.fields.lesson_language') %>
+          <div data-controller="tags" data-tags-field-name="expert[lesson_language][]">
+            <select
+              id="lesson_select"
+              class="form-select input-field"
+              data-tags-target="select"
+              data-action="change->tags#addFromSelect"
+              >
+              <option value="" disabled selected><%= I18n.t("general.select") %></option>
+              <% @expert_languages.each do |language| %>
+                <option value="<%= language %>"><%= language %></option>
+              <% end %>
+            </select>
+            <div id="selected_lesson_language" class="mt-2" data-tags-target="container" data-action="click->tags#remove">
+              <% @expert.lesson_language&.sort&.each do |language| %>
+                  <span
+                    class="selected-tag"
+                    style="background-color:#d40031; color:white; border-radius:9999px; padding:0rem 0.5rem; margin-top:0.25rem; margin-bottom:0.25rem; display:inline-flex; align-items:center;"
+                    data-tag-value="<%= language %>">
+                    <%= language %>
+                    <span
+                      style="margin-left:0.5rem; cursor:pointer; font-weight:normal;"
+                      data-action="click->tags#remove">x</span>
+                    <input type="hidden" name="expert[lesson_language][]" value="<%= language %>">
+                  </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 my-3 fw-semibold">
+          <%= form.label :hourlyRate, I18n.t('experts.fields.hourly_rate') %>
+          <div class="input-group input-field">
+            <%= form.number_field :hourlyRate, class: "form-control", placeholder: "100" %>
+            <span class="input-group-text">€</span>
+          </div>
+        </div>
+        <div class="col-md-3 my-3 fw-semibold">
+          <%= form.label :dailyRate, I18n.t('experts.fields.daily_rate') %>
+          <div class="input-group input-field">
+            <%= form.number_field :dailyRate, class: "form-control", placeholder: "1000" %>
+            <span class="input-group-text">€</span>
+          </div>
+        </div>
+      </div>
+      <%# Line %>
+      <div class="col-8 offset-md-2">
+        <hr class="">
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 my-3 fw-semibold">
+          <%= form.label :profExpInChina, I18n.t('experts.fields.exp_in_china') %>
+          <%= form.text_area :expInChina, class: "form-control input-field", rows: 3, placeholder: "Ich habe in China 2 Jahre gearbeitet" %>
+        </div>
+      </div>
+
+      <!-- CV Upload Section -->
+      <div class="row" data-controller="file-upload">
+        <div class="col-md-6 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :cv, I18n.t("experts.fields.cv") %>
+          <%= form.file_field :cv, class: "form-control input-field", data: {
+                action: "change->file-upload#addFile",
+                file_upload_target: "fileInput"
+            } %>
+
+          <!-- Display Attached CV if existing -->
+          <div class="mt-2" data-file-upload-target="container">
+            <% if @expert.cv.attached? %>
+                <span
+                    class="selected-tag"
+                    style="background-color:#d40031; color:white; border-radius:9999px; padding:0rem 0.5rem; margin-top:0.25rem; margin-bottom:0.25rem; display:inline-flex; align-items:center;"
+                    data-file-type="existing" data-file-category="cv">
+                    <%= @expert.cv.filename %>
+                    <span
+                        style="margin-left:0.5rem; cursor:pointer; font-weight:normal;"
+                        data-action="click->file-upload#remove">×</span>
+                </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificates Upload Section -->
+      <div class="row" data-controller="file-upload">
+        <div class="col-md-6 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :certificates, I18n.t("experts.fields.certificates") %>
+          <%= form.file_field :certificates, multiple: true, class: "form-control input-field", data: {
+                action: "change->file-upload#addFile",
+                file_upload_target: "fileInput"
+            } %>
+
+          <!-- Display Already Attached Certificates -->
+          <div class="mt-2" data-file-upload-target="container">
+            <% if @expert.certificates.attached? %>
+              <% @expert.certificates.each do |certificate| %>
+                  <span
+                      class="selected-tag"
+                      style="background-color:#d40031; color:white; border-radius:9999px; padding:0rem 0.5rem; margin-top:0.25rem; margin-bottom:0.25rem; display:inline-flex; align-items:center;"
+                      data-file-type="existing" data-file-category="certificates" data-file-id="<%= certificate.id %>">
+                      <%= certificate.filename %>
+                      <span
+                      style="margin-left:0.5rem; cursor:pointer; font-weight:normal;"
+                      data-action="click->file-upload#remove">x</span>
+                  </span>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 offset-md-3 fw-semibold mb-3">
+          <%= form.label :short_term_availability, I18n.t('experts.fields.short_term_availability') %>
+          <%= form.text_field :short_term_availability, class: "form-control input-field", placeholder: I18n.t("experts.placeholder.short_term_availability") %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 offset-md-3 fw-semibold">
+          <%= form.label :travel_willingness, I18n.t('experts.fields.travel_willingness') %>
+          <div data-controller="tags" data-tags-field-name="expert[travel_willingness][]">
+            <select
+              id="travel_select"
+              class="form-select input-field"
+              data-tags-target="select"
+              data-action="change->tags#addFromSelect"
+              >
+              <option value="" disabled selected><%= I18n.t("general.select") %></option>
+              <% @travels.each do |travel| %>
+                <option value="<%= travel %>"><%= travel %></option>
+              <% end %>
+            </select>
+            <div id="selected_travel" class="mt-2" data-tags-target="container" data-action="click->tags#remove">
+              <% @expert.travel_willingness&.sort&.each do |travel| %>
+                  <span
+                    class="selected-tag"
+                    style="background-color:#d40031; color:white; border-radius:9999px; padding:0rem 0.5rem; margin-top:0.25rem; margin-bottom:0.25rem; display:inline-flex; align-items:center;"
+                    data-tag-value="<%= travel %>">
+                    <%= travel %>
+                    <span
+                      style="margin-left:0.5rem; cursor:pointer; font-weight:normal;"
+                      data-action="click->tags#remove">x</span>
+                    <input type="hidden" name="expert[travel_willingness][]" value="<%= travel %>">
+                  </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 fw-semibold mt-3">
+          <%= form.label :travel_info, I18n.t('experts.fields.travel_info') %>
+          <%= form.text_area :travel_info, class: "form-control input-field", rows: 3 %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 fw-semibold mt-3">
+          <%= form.label :additionalInfo, I18n.t('experts.fields.additional_info') %>
+          <%= form.text_area :additionalInfo, class: "form-control input-field", rows: 3, id: "Anmerkungen" %>
+        </div>
+      </div>
+      <div class="mt-4 text-center pb-3">
+        <%= link_to I18n.t('general.cancel'), @cancel_path, class: "btn btn-back px-5 fs-3 fw-semibold" %>
+        <%= form.submit @save_text, class: "btn btn-create px-5 fs-3 fw-semibold" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>

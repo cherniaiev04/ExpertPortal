@@ -1,0 +1,25 @@
+<style>
+  h1 {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  p {
+    font-size: 14px;
+    color: #555;
+  }
+  a {
+    background-color: #d40031;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+</style>
+
+<h1><%= I18n.t("mailer.views.welcome") %></h1>
+<p>
+  <%= I18n.t("mailer.views.log_in_text") %>
+</p>
+<p>
+  <%= link_to I18n.t("mailer.views.log_in"), @url,style: "background-color: #007BFF; color: #fff; padding: 10px 15px; text-decoration: none; border-radius: 5px;" %>
+</p>

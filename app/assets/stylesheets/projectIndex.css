@@ -1,0 +1,97 @@
+body {
+    background-color: #F3EED9;
+}
+
+/* Custom styles for the search bar */
+.search-bar {
+    max-width: 400px;
+    /* Adjust width as needed */
+    margin: 0 auto;
+    /* Center the search bar */
+    border: 2px solid #C21827;
+    /* Red border color */
+    border-radius: 5px;
+    /* Rounded corners */
+    overflow: hidden;
+    /* Clip overflowing elements */
+}
+
+.search-bar .input-group-prepend .input-group-text {
+    background-color: transparent;
+    /* Transparent background for icon */
+    border: none;
+    /* Remove border around icon area */
+}
+
+.search-bar .input-group-prepend .input-group-text i {
+    color: #333;
+    /* Color for the search icon */
+}
+
+.search-bar input.form-control {
+    border: none;
+    /* Remove border on input */
+    box-shadow: none;
+    /* Remove shadow on input */
+}
+
+.search-bar input.form-control:focus {
+    outline: none;
+    /* Remove focus outline */
+    box-shadow: none;
+    /* Remove focus shadow */
+}
+
+.new-button {
+    background-color: #D30031;
+
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.tooltips-container {
+    white-space: nowrap;
+    /* Prevent wrapping */
+    overflow: hidden;
+    /* Hide overflow content */
+    text-overflow: ellipsis;
+    /* Display '...' for truncated content */
+    cursor: pointer;
+    /* Change cursor to indicate interactivity */
+}
+
+.location_badge {
+    background-color: none;
+    color: #D30031;
+    border: 1px solid #D30031;
+    width: auto;
+}
+
+.btn-full-width {
+    border: 1px solid #BD827D;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.filter-option {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.filter-option:hover {
+    background-color: #f8f9fa;
+}

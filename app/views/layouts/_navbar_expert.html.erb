@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a>
+        <%= image_tag "fiti_logo_full.png", alt: "Company Logo", class: "ms-3", style: "width: auto; height: 80px; " %>
+    </a>
+    <!-- Toggler for Small Screens -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <% if user_signed_in? %>
+        <!-- Center Links -->
+        <div class="d-flex justify-content-center flex-grow-1">
+          <ul class="navbar-nav">
+            <li class="nav-item mx-3">
+              <%= link_to I18n.t('navbar.projects_menu'), "/projects", class: "nav-link text-primary fw-medium text-uppercase fs-5" %>
+            </li>
+            <li class="nav-item mx-3">
+              <%= link_to I18n.t('navbar.profile_menu'), "/experts/me", class: "nav-link fw-medium text-uppercase text-primary fs-5" %>
+            </li>
+          </ul>
+        </div>
+        <!-- Right Icons and User Info -->
+        <div class="d-flex justify-content-center align-items-center">
+          <!-- User Info -->
+          <div class="text-center me-3">
+            <span class="badge bg-primary"><%= I18n.t("navbar.expert_role")%></span>
+            <div><small><%= current_user.email %></small></div>
+          </div>
+          <!-- Logout Button -->
+          <div>
+            <% if user_signed_in? %>
+              <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
+                <button type="submit" class="btn btn-outline-secondary p-2">
+                  <i class="fa-solid fa-arrow-right-from-bracket fa-lg" aria-label="<%= t('general.sign_out') %>"></i>
+                </button>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,21 @@
+body {
+    background-color: #F3EED9;
+}
+.badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px; /* Fixed width for uniformity */
+    height: 20px; /* Set a height to make them uniform vertically */
+    padding: 0.5em;
+  }
+  .card-title-custom {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .divider-line {
+    height: 2px;
+    width: 100%;
+    background-color: #000;
+    margin-left: auto;
+  }

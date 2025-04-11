@@ -1,0 +1,60 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+$primary: rgb(212, 0, 49);
+$alert-danger-background-color: #ffba08;
+$danger: #ff0004;
+$secondary: #574240;
+$info: #798897;
+
+$alert-primary-background-color: $primary;
+$alert-primary-border-color: $primary;
+
+@import "bootstrap";
+@import "font-awesome";
+
+// Extend Bootstrap Button Styles
+.btn-create {
+    @extend .btn;
+    @extend .btn-primary; // Base Bootstrap style
+    border: none;
+    background-color: $primary;
+    color: white;
+}
+
+.btn-edit {
+    @extend .btn;
+    @extend .btn-primary;
+    border: none;
+    background-color: $secondary;
+    color: white;
+}
+
+.btn-delete {
+    @extend .btn;
+    @extend .btn-primary;
+    border: none;
+    background-color: $danger;
+    color: white;
+}
+
+.btn-back {
+    @extend .btn;
+    @extend .btn-primary;
+    border: none;
+    background-color: $info;
+    color: white;
+}

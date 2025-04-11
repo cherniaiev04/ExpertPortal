@@ -1,0 +1,378 @@
+<%= stylesheet_link_tag "projectShow", media: "all", "data-turbo-track": "reload" %>
+<div class="container-md mt-5">
+  <h2 class="mb-2 text-uppercase fw-light">
+    <strong><span class="text-uppercase fw-bold"><%= I18n.t('projects.projects') %></span></strong> <%= I18n.t('general.create') %>
+  </h2>
+  <%= form_with(model: @project) do |form| %>
+    <% if @project.errors.any? %>
+      <div class="col-md-6 offset-md-3 alert alert-danger">
+        <h5>
+          <%= @project.errors.count %> <%= I18n.t('general.errors.something_wrong') %>
+        </h5>
+        <ul>
+          <% @project.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="container-fluid p-3" style="background-color: white;">
+      <%# Name Field %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :name, I18n.t('projects.fields.name') %>*
+          <%= form.text_field :name, class: "form-control input-field", placeholder: "Project Alpha" %>
+        </div>
+      </div>
+      <%# Time Period Fields %>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :time_period_start, I18n.t('projects.fields.start_date') %>*
+          <%= form.date_field :time_period_start, class: "form-control input-field" %>
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :time_period_end, I18n.t('projects.fields.end_date') %>*
+          <%= form.date_field :time_period_end, class: "form-control input-field" %>
+        </div>
+      </div>
+      <%# Schedule Field %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :schedule, I18n.t('projects.fields.schedule') %>
+          <%= form.text_area :schedule, class: "form-control input-field", rows: 3, placeholder: "Weekly schedule details" %>
+        </div>
+      </div>
+      <%# Experts %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 fw-semibold mt-3">
+          <%= form.label :experts, I18n.t('projects.fields.expert') + "*" %>
+          <div data-controller="tags" data-tags-field-name="project[expert_ids][]">
+            <select
+                  id="category_select"
+                  class="form-select input-field"
+                  data-tags-target="select"
+                  data-action="change->tags#addFromSelect"
+              >
+              <option value="" disabled selected><%= I18n.t("general.select") %></option>
+              <% @experts.each do |expert| %>
+                <option value="<%= expert.id %>"><%= expert.title %> <%= expert.firstname %> <%= expert.name %></option>
+              <% end %>
+            </select>
+            <div id="selected_categories" class="mt-2" data-tags-target="container" data-action="click->tags#remove">
+              <% @project.experts&.each do |expert| %>
+                  <span
+                    class="selected-tag"
+                    style="background-color:#d40031; color:white; border-radius:9999px; padding:0rem 0.5rem; margin-top:0.25rem; margin-bottom:0.25rem; display:inline-flex; align-items:center;"
+                    data-tag-value="<%= expert.id %>">
+                    <%= expert.title %> <%= expert.firstname %> <%= expert.name %>
+                    <span
+                      style="margin-left:0.5rem; cursor:pointer; font-weight:normal;"
+                      data-action="click->tags#remove">x</span>
+                    <input type="hidden" name="project[expert_ids][]" value="<%= expert.id %>">
+                  </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <%# Participants Field %>
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :participants, I18n.t('projects.fields.participants') %>
+          <%= form.text_field :participants, class: "form-control input-field", placeholder: "John, Jane, Alex" %>
+        </div>
+        <%# Location Field %>
+        <div class="col-md-3 fw-semibold">
+          <%= form.label :location, I18n.t('projects.fields.location') %>
+          <div class="input-group">
+            <input type="text" id="location_input" class="form-control input-field">
+            <button type="button" id="add_location" class="btn btn-primary">+</button>
+          </div>
+          <ul id="location_list" class="list-unstyled mt-2">
+            <% (@project.location || []).each do |loc| %>
+              <li class="location-item d-flex align-items-center mb-2">
+                <span class="me-2"><%= loc %></span>
+                <button type="button" class="btn-close btn-sm remove-item" aria-label="Remove"></button>
+                <input type="hidden" name="project[location][]" value="<%= loc %>">
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <%# Clients Field %>
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :clients, I18n.t('projects.fields.clients') %>
+          <%= form.text_field :clients, class: "form-control input-field", placeholder: "Client A, Client B" %>
+        </div>
+        <%# Expertise Field %>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :expertise, I18n.t('projects.fields.expertise') %>*
+          <%= form.text_field :expertise, class: "form-control input-field", placeholder: "Engineering, Consulting" %>
+        </div>
+      </div>
+      <%# Project Type Field %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 fw-semibold mt-3">
+          <%= form.label :project_type, I18n.t('projects.fields.project_type') %>
+          <div class="input-group">
+            <input type="text" id="project_type_input" class="form-control input-field" placeholder="<%= I18n.t('projects.fields.add_project_type') %>">
+            <button type="button" id="add_project_type" class="btn btn-primary">+</button>
+          </div>
+          <ul id="project_type_list" class="list-unstyled mt-2">
+            <% (@project.project_type || []).each do |ptype| %>
+              <li class="project-type-item d-flex align-items-center mb-2">
+                <span class="me-2"><%= ptype %></span>
+                <button type="button" class="btn-close btn-sm remove-item" aria-label="Remove"></button>
+                <input type="hidden" name="project[project_type][]" value="<%= ptype %>">
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <%# Key Topics Field %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 fw-semibold mt-3">
+          <%= form.label :key_topics, I18n.t('projects.fields.key_topics') %>
+          <div class="input-group">
+            <input type="text" id="key_topics_input" class="form-control input-field" placeholder="<%= I18n.t('projects.fields.add_key_topic') %>">
+            <button type="button" id="add_key_topic" class="btn btn-primary">+</button>
+          </div>
+          <ul id="key_topics_list" class="list-unstyled mt-2">
+            <% (@project.key_topics || []).each do |topic| %>
+              <li class="key-topic-item d-flex align-items-center mb-2">
+                <span class="me-2"><%= topic %></span>
+                <button type="button" class="btn-close btn-sm remove-item" aria-label="Remove"></button>
+                <input type="hidden" name="project[key_topics][]" value="<%= topic %>">
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <%# Line %>
+      <div class="col-8 offset-md-2">
+        <hr class="my-3">
+      </div>
+      <%# ProjectAblauf %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h3><%= I18n.t('projects.fields.topic_project_plan') %></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :termine, I18n.t('projects.fields.dates') %>*
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :project_shedule, I18n.t('projects.fields.project_shedule') %>*
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :budget_plan, I18n.t('projects.fields.budget_plan') %>*
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :flight_date, I18n.t('projects.fields.flight_date') %>*
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :accompanying_person, I18n.t('projects.fields.accompanying_person') %>*
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :expert_presentation, I18n.t('projects.fields.expert_presentation') %>*
+        </div>
+      </div>
+      <%# Line %>
+      <div class="col-8 offset-md-2">
+        <hr class="my-3">
+      </div>
+      <%# Abstimmung mit Kooperationspartnern %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h3><%= I18n.t('projects.fields.topic_cordination') %></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :event_location, I18n.t('projects.fields.event_location') %>*
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :adress_of_event, I18n.t('projects.fields.adress_of_event') %>*
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :contacts_details_of_event, I18n.t('projects.fields.contacts_details_of_event') %>*
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :offer, I18n.t('projects.fields.offer') %>*
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :invoice, I18n.t('projects.fields.invoice') %>*
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :remarks, I18n.t('projects.fields.remarks') %>*
+        </div>
+      </div>
+      <%# Line %>
+      <div class="col-8 offset-md-2">
+        <hr class="my-3">
+      </div>
+      <%# Unterkunft %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h3><%= I18n.t('projects.fields.topic_accomodation') %></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :accomodation_adress, I18n.t('projects.fields.accomodation_adress') %>*
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :accomodation_contacts, I18n.t('projects.fields.accomodation_contacts') %>*
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :offer, I18n.t('projects.fields.offer') %>*
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :invoice, I18n.t('projects.fields.invoice') %>*
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :remarks, I18n.t('projects.fields.remarks') %>*
+        </div>
+      </div>
+      <%# Line %>
+      <div class="col-8 offset-md-2">
+        <hr class="my-3">
+      </div>
+      <%# Transport %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h3><%= I18n.t('projects.fields.topic_transport') %></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :transport_contacts, I18n.t('projects.fields.transport_contacts') %>*
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :offer, I18n.t('projects.fields.offer') %>*
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :invoice, I18n.t('projects.fields.invoice') %>*
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :remarks, I18n.t('projects.fields.remarks') %>*
+        </div>
+      </div>
+      <%# Line %>
+      <div class="col-8 offset-md-2">
+        <hr class="my-3">
+      </div>
+      <%# Verpflegung %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h3><%= I18n.t('projects.fields.topic_catering') %></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :catering_adress, I18n.t('projects.fields.catering_adress') %>*
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :catering_contacts, I18n.t('projects.fields.catering_contacts') %>*
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :offer, I18n.t('projects.fields.offer') %>*
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :invoice, I18n.t('projects.fields.invoice') %>*
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :remarks, I18n.t('projects.fields.remarks') %>*
+        </div>
+      </div>
+      <%# Line %>
+      <div class="col-8 offset-md-2">
+        <hr class="my-3">
+      </div>
+      <%# Dolmetscher %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h3><%= I18n.t('projects.fields.topic_interpreter') %></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :offer, I18n.t('projects.fields.offer') %>*
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 offset-md-3 mb-3 fw-semibold">
+          <%= form.label :invoice, I18n.t('projects.fields.invoice') %>*
+        </div>
+        <div class="col-md-3 mb-3 fw-semibold">
+          <%= form.label :remarks, I18n.t('projects.fields.remarks') %>*
+        </div>
+      </div>
+      <div class="mt-4 text-center pb-3">
+        <%= link_to I18n.t('general.cancel'), @cancel_path, class: "btn btn-back px-5 fs-3 fw-semibold" %>
+        <%= form.submit @save_text, class: "btn btn-create px-5 fs-3 fw-semibold" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const fields = [
+      { inputId: 'location_input', buttonId: 'add_location', listId: 'location_list', hiddenName: 'project[location][]' },
+      { inputId: 'project_type_input', buttonId: 'add_project_type', listId: 'project_type_list', hiddenName: 'project[project_type][]' },
+      { inputId: 'key_topics_input', buttonId: 'add_key_topic', listId: 'key_topics_list', hiddenName: 'project[key_topics][]' },
+    ];
+
+    fields.forEach(({ inputId, buttonId, listId, hiddenName }) => {
+      const inputField = document.getElementById(inputId);
+      const addButton = document.getElementById(buttonId);
+      const list = document.getElementById(listId);
+
+      addButton.addEventListener('click', function () {
+        const value = inputField.value.trim();
+        if (value !== '') {
+          const listItem = document.createElement('li');
+          listItem.classList.add('d-flex', 'align-items-center', 'mb-2');
+          listItem.innerHTML = `
+            <span class="me-2">${value}</span>
+            <button type="button" class="btn-close btn-sm remove-item" aria-label="Remove"></button>
+            <input type="hidden" name="${hiddenName}" value="${value}">
+          `;
+          list.appendChild(listItem);
+          inputField.value = '';
+        }
+      });
+
+      list.addEventListener('click', function (event) {
+        if (event.target.classList.contains('remove-item')) {
+          const listItem = event.target.closest('li');
+          if (listItem) {
+            list.removeChild(listItem);
+          }
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Expertgrid" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= yield :head %>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body>
+    <% if user_signed_in? %>
+      <% if current_user.role == "admin"%>
+        <%= render "layouts/navbar_admin" %>
+      <% elsif current_user.role == "user" %>
+        <%= render "layouts/navbar_user" %>
+      <% else %>
+        <%= render "layouts/navbar_expert" %>
+      <% end %>
+    <% end %>
+    <div class="container my-3">
+      <% flash.each do |type, message| %>
+        <div class="alert <%= flash_class(type) %> alert-dismissable fade show" role="alert">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+    <%= yield %>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
